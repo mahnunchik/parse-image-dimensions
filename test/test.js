@@ -90,4 +90,20 @@ describe('parse-image-dimensions', function () {
     expect(data).to.have.property('scale', 3);
   });
 
+  it('should parse with no name', function () {
+    var data = parse('500x600@3x');
+    expect(data).to.have.property('name', null);
+    expect(data).to.have.property('width', 500);
+    expect(data).to.have.property('height', 600);
+    expect(data).to.have.property('scale', 3);
+  });
+
+  it('should parse with no name and no scale', function () {
+    var data = parse('500x600');
+    expect(data).to.have.property('name', null);
+    expect(data).to.have.property('width', 500);
+    expect(data).to.have.property('height', 600);
+    expect(data).to.have.property('scale', null);
+  });
+
 });

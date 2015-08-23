@@ -1,6 +1,6 @@
 'use strict';
 
-var dimensionsRegExp = /^(.*?)(-((\d+)?x?(\d+)?))?(@(\d+)x?)?$/i;
+var dimensionsRegExp = /(((\d+)?x?(\d+)?))?(@(\d+)x?)?$/i;
 
 module.exports = function (filename) {
   if (arguments.length < 1) {
@@ -10,12 +10,17 @@ module.exports = function (filename) {
     throw new Error('filename should be a string');
   }
 
+  var name;
+
   var match = filename.match(dimensionsRegExp);
 
-  var name = match[1];
-  var width = match[4] ? parseInt(match[4], 10) : null;
-  var height = match[5] ? parseInt(match[5], 10) : null;
-  var scale = match[7] ? parseInt(match[7], 10) : null;
+  var width = match[3] ? parseInt(match[3], 10) : null;
+  var height = match[4] ? parseInt(match[4], 10) : null;
+  var scale = match[6] ? parseInt(match[6], 10) : null;
+
+  name = filename.replace(match[0], '');
+  name = name.replace(/-$/, '');
+  name = name ? name : ( filename === '' ? '' : null );
 
   if (match) {
     return {
