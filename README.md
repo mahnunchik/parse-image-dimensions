@@ -1,5 +1,7 @@
 # parse-image-dimensions
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/mahnunchik/parse-image-dimensions.svg)](https://greenkeeper.io/)
+
 Extract image dimensions by parsing its filename.
 
 * name
